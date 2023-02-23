@@ -8345,3 +8345,8 @@ a[data-toggle="collapse"] {
 
 .subscribe-form .form-control {
   border: 1px solid rgba(0, 0, 0, 0.05); }
+
+.iframe.mastodon-embed {
+    max-width: 100%;
+    border: 0;
+}
