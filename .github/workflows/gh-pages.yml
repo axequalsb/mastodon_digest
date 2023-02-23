@@ -20,23 +20,18 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Setup environment
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create env file
-        shell: bash
-        env:
-          MASTO_TOKEN: ${{ secrets.MASTODON_TOKEN }}
-        run: |
-          echo -e "MASTODON_TOKEN=$MASTO_TOKEN\nMASTODON_BASE_URL=https://bolha.us" > ../../.env
-
   # Build job
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Create env file
+        shell: bash
+        env:
+          MASTO_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+        run: |
+          echo -e "MASTODON_TOKEN=$MASTO_TOKEN\nMASTODON_BASE_URL=https://bolha.us" > ../../.env
       - name: Build
         run: |
           python -m pip install -r requirements.txt
